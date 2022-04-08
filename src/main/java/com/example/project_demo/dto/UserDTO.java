@@ -1,27 +1,20 @@
-package com.example.project_demo.entity;
+package com.example.project_demo.dto;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "user")
-public class UserEntity extends BaseEntity{
-
-    @Column(name = "username", unique = true)
+public class UserDTO extends BaseDTO{
     private String username;
 
-    @Column(name = "password")
+    @JsonIgnore
     private String password;
 
-    @Column(name = "status")
     private Integer status;
 
-    @ManyToMany
-    @JoinTable(name = "user_role",
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<RoleEntity> roles = new HashSet<>();
+    @JsonIgnore
+    private Set<RoleDTO> roles = new HashSet<>();
 
     public String getUsername() {
         return username;
@@ -47,11 +40,11 @@ public class UserEntity extends BaseEntity{
         this.status = status;
     }
 
-    public Set<RoleEntity> getRoles() {
+    public Set<RoleDTO> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<RoleEntity> roles) {
+    public void setRoles(Set<RoleDTO> roles) {
         this.roles = roles;
     }
 }

@@ -1,42 +1,27 @@
-package com.example.project_demo.entity;
+package com.example.project_demo.dto;
+
+import com.example.project_demo.entity.CategoryEntity;
+import com.example.project_demo.entity.StudentCourseEntity;
+import com.example.project_demo.entity.TeacherEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name = "Course")
-public class CourseEntity extends BaseEntity{
-
-    @Column(unique = true, name = "name")
+public class CourseDTO extends BaseDTO{
     private String name;
-
-    @Column(name = "description")
     private String description;
-
-    @Column(name = "time_start")
     private Date timeStart;
-
-    @Column(name = "time_end")
     private Date timeEnd;
-
-    @Column(name = "max_number_student")
     private Integer maxNumberStudent;
-
-    @Column(name = "current_number_student")
     private Integer currentNumberStudent;
+    private CategoryDTO category;
+    private TeacherDTO teacher;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private CategoryEntity category;
-
-    @ManyToOne
-    @JoinColumn(name = "teacher_id", referencedColumnName = "id")
-    private TeacherEntity teacher;
-
-    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    private List<StudentCourseEntity> listStudentCourse = new ArrayList<>();
+//    @JsonIgnore
+//    private List<StudentCourseDTO> listStudentCourse = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -86,27 +71,27 @@ public class CourseEntity extends BaseEntity{
         this.currentNumberStudent = currentNumberStudent;
     }
 
-    public CategoryEntity getCategory() {
+    public CategoryDTO getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryEntity category) {
+    public void setCategory(CategoryDTO category) {
         this.category = category;
     }
 
-    public TeacherEntity getTeacher() {
+    public TeacherDTO getTeacher() {
         return teacher;
     }
 
-    public void setTeacher(TeacherEntity teacher) {
+    public void setTeacher(TeacherDTO teacher) {
         this.teacher = teacher;
     }
 
-    public List<StudentCourseEntity> getListStudentCourse() {
-        return listStudentCourse;
-    }
-
-    public void setListStudentCourse(List<StudentCourseEntity> listStudentCourse) {
-        this.listStudentCourse = listStudentCourse;
-    }
+//    public List<StudentCourseDTO> getListStudentCourse() {
+//        return listStudentCourse;
+//    }
+//
+//    public void setListStudentCourse(List<StudentCourseDTO> listStudentCourse) {
+//        this.listStudentCourse = listStudentCourse;
+//    }
 }

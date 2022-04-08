@@ -1,17 +1,12 @@
-package com.example.project_demo.entity;
+package com.example.project_demo.dto;
 
-import com.example.project_demo.dto.Role;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "role")
-public class RoleEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class RoleDTO {
     private Long id;
-
-    @Column(name = "name")
     private Role name;
 
     public Long getId() {

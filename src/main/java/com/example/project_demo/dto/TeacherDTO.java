@@ -1,38 +1,25 @@
-package com.example.project_demo.entity;
+package com.example.project_demo.dto;
 
-import javax.persistence.*;
+import com.example.project_demo.entity.CourseEntity;
+import com.example.project_demo.entity.UserEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name = "teacher")
-public class TeacherEntity extends BaseEntity{
-
-    @Column(name = "name")
+public class TeacherDTO extends BaseDTO{
     private String name;
-
-    @Column(name = "description")
     private String description;
-
-    @Column(name = "birthday")
     private Date birthday;
-
-    @Column(name = "address")
     private String address;
-
-    @Column(name = "phone")
     private String phone;
-
-    @Column(name = "email")
     private String email;
-
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", unique = true)
-    private UserEntity user;
-
-    @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
-    List<CourseEntity> courses = new ArrayList<>();
+//    @JsonIgnore
+//    private UserEntity user;
+//
+//    @JsonIgnore
+//    List<CourseDTO> courses = new ArrayList<>();
 
     public String getName() {
         return name;
@@ -82,19 +69,19 @@ public class TeacherEntity extends BaseEntity{
         this.email = email;
     }
 
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
-    }
-
-    public List<CourseEntity> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(List<CourseEntity> courses) {
-        this.courses = courses;
-    }
+//    public UserEntity getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(UserEntity user) {
+//        this.user = user;
+//    }
+//
+//    public List<CourseDTO> getCourses() {
+//        return courses;
+//    }
+//
+//    public void setCourses(List<CourseDTO> courses) {
+//        this.courses = courses;
+//    }
 }
